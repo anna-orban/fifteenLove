@@ -1,5 +1,5 @@
 function love.load()
-
+    love.graphics.setNewFont(30)
 end
 
 function love.draw()
