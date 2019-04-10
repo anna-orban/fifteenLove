@@ -16,16 +16,31 @@ end
 function love.draw()
     for y = 1, gridYCount do
         for x = 1, gridXCount do
-            local pieceSize = 100
-            local pieceDrawSize = pieceSize - 1
-            love.graphics.setColor(.4, .1, .6)
-            love.graphics.rectangle('fill', (x - 1) * pieceSize, (y - 1) * pieceSize, pieceDrawSize, pieceDrawSize)
-            love.graphics.setColor(1, 1, 1)
-            love.graphics.print(grid[y][x], (x - 1) * pieceSize, (y - 1) * pieceSize)
+           if grid[y][x] ~= gridXCount * gridYCount then
+                local pieceSize = 100
+                local pieceDrawSize = pieceSize - 1
+                love.graphics.setColor(.4, .1, .6)
+                love.graphics.rectangle('fill', (x - 1) * pieceSize, (y - 1) * pieceSize, pieceDrawSize, pieceDrawSize)
+                love.graphics.setColor(1, 1, 1)
+                love.graphics.print(grid[y][x], (x - 1) * pieceSize, (y - 1) * pieceSize)
+            end
         end
     end
 end
 
-function love.update()
+function love.keypressed()
 
+    local emptyX
+    local emptyY
+
+    for y = 1, gridYCount do
+        for x = 1, gridXCount do
+            if grid[y][x] == gridXCount * gridYCount then
+                emptyX = x
+                emptyY = y
+            end
+        end
+    end
+    -- temporary
+    print('empty x: '..emptyX..', empty y: '..emptyY)
 end
