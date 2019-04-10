@@ -41,6 +41,11 @@ function love.keypressed()
             end
         end
     end
+
+    if grid[emptyY - 1] then
+        grid[emptyY - 1][emptyX], grid[emptyY][emptyX] = grid[emptyY][emptyX], grid[emptyY - 1][emptyX]
+    end
+    
     -- temporary
     print('empty x: '..emptyX..', empty y: '..emptyY)
 end
