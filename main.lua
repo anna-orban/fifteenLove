@@ -28,10 +28,10 @@ function love.draw()
     end
 end
 
-function love.keypressed()
+function love.keypressed(key)
 
-    local emptyX
-    local emptyY
+   -- local emptyX
+    --local emptyY
 
     for y = 1, gridYCount do
         for x = 1, gridXCount do
@@ -52,7 +52,4 @@ function love.keypressed()
     if grid[newEmptyY] then
         grid[newEmptyY][emptyX], grid[emptyY][emptyX] = grid[emptyY][emptyX], grid[newEmptyY][emptyX]
     end
-    
-    -- temporary
-    print('empty x: '..emptyX..', empty y: '..emptyY)
 end
