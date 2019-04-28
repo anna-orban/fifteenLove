@@ -11,6 +11,19 @@ function love.load()
             grid[y][x] = x + ((y-1) * gridXCount)
         end
     end
+
+    for moveNumber = 1, 1000 do
+        local roll = love.math.random(4)
+        if roll == 1 then
+            move('down')
+        elseif roll == 2 then
+            move('up')
+        elseif roll == 3 then
+            move('right')
+        elseif roll == 4 then
+            move('left')
+        end
+    end
 end
 
 function love.draw()
@@ -29,7 +42,18 @@ function love.draw()
 end
 
 function love.keypressed(key)
+    if key == 'down' then
+        move('down')
+    elseif key == 'up' then
+        move('up')
+    elseif key == 'left' then
+        move('left')
+    elseif key == 'right' then
+        move('right')
+    end
+end
 
+function move(direction)
     local emptyX
     local emptyY
 
@@ -45,17 +69,17 @@ function love.keypressed(key)
     local newEmptyY = emptyY
     local newEmptyX = emptyX
     
-    if key == 'down' then
+    if direction == 'down' then
         newEmptyY = emptyY - 1
-    elseif key == 'up' then
+    elseif direction == 'up' then
         newEmptyY = emptyY + 1
-    elseif key == 'left' then
+    elseif direction == 'left' then
         newEmptyX = emptyX + 1
-    elseif key == 'right' then
+    elseif direction == 'right' then
         newEmptyX = emptyX - 1
     end
 
     if grid[newEmptyY] and grid[newEmptyY][newEmptyX] then
         grid[newEmptyY][newEmptyX], grid[emptyY][emptyX] = grid[emptyY][emptyX], grid[newEmptyY][newEmptyX]
     end
-end
+end 
