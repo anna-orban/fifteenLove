@@ -30,8 +30,8 @@ end
 
 function love.keypressed(key)
 
-   -- local emptyX
-    --local emptyY
+    local emptyX
+    local emptyY
 
     for y = 1, gridYCount do
         for x = 1, gridXCount do
@@ -42,14 +42,20 @@ function love.keypressed(key)
         end
     end
 
-    local newEmptyY
+    local newEmptyY = emptyY
+    local newEmptyX = emptyX
+    
     if key == 'down' then
         newEmptyY = emptyY - 1
     elseif key == 'up' then
         newEmptyY = emptyY + 1
+    elseif key == 'left' then
+        newEmptyX = emptyX + 1
+    elseif key == 'right' then
+        newEmptyX = emptyX - 1
     end
 
-    if grid[newEmptyY] then
-        grid[newEmptyY][emptyX], grid[emptyY][emptyX] = grid[emptyY][emptyX], grid[newEmptyY][emptyX]
+    if grid[newEmptyY] and grid[newEmptyY][newEmptyX] then
+        grid[newEmptyY][newEmptyX], grid[emptyY][emptyX] = grid[emptyY][emptyX], grid[newEmptyY][newEmptyX]
     end
 end
